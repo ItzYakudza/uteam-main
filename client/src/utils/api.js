@@ -1,15 +1,11 @@
 import axios from 'axios';
 
 // Базовый URL для API сервера
-// Локальная разработка: localhost:3001
-// Production хостинг: 72.56.236.196:3001
-const BASE_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:3001';
-
-console.log('[API Config] BASE_URL =', BASE_URL);
+const BASE_URL = 'http://72.56.236.196/api'; 
 
 const api = axios.create({
-    baseURL: `${BASE_URL}/api`,
-    timeout: 60000,
+    baseURL: BASE_URL,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json'
     }

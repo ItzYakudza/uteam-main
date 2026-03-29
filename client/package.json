@@ -3,32 +3,26 @@
   "version": "1.0.0",
   "description": "UTEAM - Game Platform Client",
   "author": "UTEAM <support@uteam.com>",
-  "main": "src/main/main.js",
+"main": "build/electron.js",
   "scripts": {
-    "start": "electron .",
-    "dev": "concurrently \"npm run react-dev\" \"wait-on http://localhost:3000 && electron .\"",
-    "react-dev": "react-scripts start",
     "react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-    "build": "electron-builder build --win --dir -p never",
-    "build:all": "electron-builder build --win -p never"
+    "build": "npm run react-build && electron-builder build --win --dir -p never"
   },
 "build": {
   "appId": "com.uteam.app",
   "productName": "UTEAM",
-  "directories": {
-    "output": "dist"
-  },
   "files": [
     "build/**/*",
     "node_modules/**/*",
-    "package.json"
+    "package.json",
+    {
+      "from": "src/main/main.js",
+      "to": "main.js"
+    }
   ],
-  "win": {
-    "target": "nsis",
-    "icon": "public/icon.ico"
-  },
-  "asar": true,
-  "extraResources": []
+  "directories": {
+    "output": "dist"
+  }
 },
   "dependencies": {
     "adm-zip": "^0.5.16",
