@@ -8,4 +8,16 @@ import App from './App';
 import './styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+
+// Отключаем Strict Mode в production для избежания дублирования запросов
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+root.render(
+    isDevelopment ? (
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    ) : (
+        <App />
+    )
+);
