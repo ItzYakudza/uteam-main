@@ -109,19 +109,29 @@ function GamePage() {
     };
 
     const handlePlayGame = () => {
-        // Формируем URL игры
-        const gameUrl = game.gameUrl || `${BASE_URL}/games${game.gamePath}/index.html`;
-        
-        if (window.electronAPI) {
+        if (!window.electronAPI) {
+            // В браузере открываем игру в новом окне (если это HTML/Web игра)
+            const gameUrl = game.gameUrl || `${BASE_URL}/games${game.gamePath}/index.html`;
+            window.open(gameUrl, '_blank');
+            return;
+        }
+
+        // Определяем тип игры и запускаем соответственно
+        if (game.gameType === 'executable') {
+            // EXE игра - передаём gameId чтобы главный процесс рассчитал путь
             window.electronAPI.game.launch({
-                gameType: game.gameType || 'html',
-                gamePath: game.gamePath,
+                gameId: game._id,
                 title: game.title,
-                gameUrl: gameUrl
+                executablePath: game.executablePath || 'game.exe'
             });
         } else {
-            // В браузере открываем игру в новом окне
-            window.open(gameUrl, '_blank');
+            // HTML/Web игра
+            window.electronAPI.game.launchWeb({
+                gameId: game._id,
+                title: game.title,
+                gameUrl: game.gameUrl,
+                gamePath: game.gamePath
+            });
         }
     };
 

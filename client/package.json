@@ -3,47 +3,61 @@
   "version": "1.0.0",
   "description": "UTEAM - Game Platform Client",
   "author": "UTEAM <support@uteam.com>",
-"main": "build/electron.js",
+  "main": "main.js",
+  "homepage": "./",
   "scripts": {
-"react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-"build": "npm run react-build && electron-builder build --win -p never"
+    "react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "clean": "rimraf dist build",
+    "build": "npm run clean && npm run react-build && electron-builder build --win -p never"
   },
-"build": {
-  "appId": "com.uteam.app",
-  "productName": "UTEAM",
-  "directories": {
-    "output": "dist",
-    "buildResources": "assets"
-  },
-  "files": [
-    "build/**/*",
-    "node_modules/**/*",
-    "package.json",
-    {
-      "from": "src/main/main.js",
-      "to": "main.js"
-    }
-  ],
-  "win": {
-    "target": [
+  "build": {
+    "appId": "com.uteam.app",
+    "productName": "UTEAM",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json",
       {
-        "target": "nsis",
-        "arch": ["x64"]
+        "from": "src/main/main.js",
+        "to": "main.js"
+      },
+      {
+        "from": "src/main/preload.js",
+        "to": "preload.js"
+      },
+      {
+        "from": "src/main/updater.js",
+        "to": "updater.js"
+      },
+      {
+        "from": "public/icon.ico",
+        "to": "icon.ico"
       }
     ],
-    "icon": "public/icon.ico"
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "UTEAM",
+      "installerIcon": "public/icon.ico",
+      "uninstallerIcon": "public/icon.ico",
+      "installerHeaderIcon": "public/icon.ico"
+    }
   },
-  "nsis": {
-    "oneClick": false,
-    "allowToChangeInstallationDirectory": true,
-    "createDesktopShortcut": true,
-    "createStartMenuShortcut": true,
-    "shortcutName": "UTEAM"
-  },
-  "extraMetadata": {
-    "main": "main.js"
-  }
-},
   "dependencies": {
     "adm-zip": "^0.5.16",
     "axios": "^1.6.2",
@@ -71,6 +85,5 @@
     "development": [
       "last 1 electron version"
     ]
-  },
-  "homepage": "./"
+  }
 }

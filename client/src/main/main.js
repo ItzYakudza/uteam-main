@@ -603,8 +603,10 @@ function createGameWindow(gameData) {
     });
     
     // Загружаем игру
-    const API_BASE = 'http://localhost:3001';
+    // Используем API URL из переменной окружения или fallback на localhost
+    const API_BASE = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:3001';
     const fullUrl = gameUrl || `${API_BASE}/games${gamePath}/index.html`;
+    console.log('[Game:Web] Loading URL:', fullUrl);
     gameWindow.loadURL(fullUrl);
     
     // Сохраняем окно в Map
@@ -629,7 +631,7 @@ ipcMain.on('game:launchWeb', (event, gameData) => {
 
 // Запуск EXE игры
 ipcMain.on('game:launch', (event, gameData) => {
-    const { executablePath, title, gameId } = gameData;
+    let { executablePath, title, gameId } = gameData;
     
     console.log('[Game:Launch] Received request for game:', { gameId, title, executablePath });
     
@@ -641,15 +643,26 @@ ipcMain.on('game:launch', (event, gameData) => {
         });
         return;
     }
+
+    // Если это relative path (например "game.exe"), рассчитаем полный путь
+    if (!path.isAbsolute(executablePath)) {
+        const gamesDir = path.join(app.getPath('userData'), 'games');
+        executablePath = path.join(gamesDir, gameId, executablePath);
+        console.log('[Game:Launch] Calculated full path:', executablePath);
+    }
     
     if (!fs.existsSync(executablePath)) {
         console.error('[Game:Launch] Executable not found at:', executablePath);
-        const fileStats = fs.existsSync(path.dirname(executablePath)) ? 
-            fs.statSync(path.dirname(executablePath)) : null;
-        console.error('[Game:Launch] Parent directory exists:', !!fileStats);
-        if (fileStats) {
-            console.error('[Game:Launch] Parent directory contents:', 
-                fs.readdirSync(path.dirname(executablePath)).slice(0, 10));
+        const parentDir = path.dirname(executablePath);
+        const parentExists = fs.existsSync(parentDir);
+        console.error('[Game:Launch] Parent directory exists:', parentExists);
+        if (parentExists) {
+            try {
+                const contents = fs.readdirSync(parentDir);
+                console.error('[Game:Launch] Parent directory contents:', contents.slice(0, 10));
+            } catch (err) {
+                console.error('[Game:Launch] Failed to list directory:', err.message);
+            }
         }
         mainWindow?.webContents.send('game:error', { 
             gameId, 

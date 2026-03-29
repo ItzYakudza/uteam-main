@@ -41,18 +41,29 @@ function Sidebar() {
     const handleLaunchGame = (item) => {
         const game = item.game;
         
-        if (window.electronAPI?.game) {
-            // HTML/Web игры запускаем в отдельном окне
+        if (!window.electronAPI?.game) {
+            // Браузер - открываем в новой вкладке
+            const gameUrl = game.gameUrl || `${BASE_URL}/games${game.gamePath}/index.html`;
+            window.open(gameUrl, '_blank');
+            return;
+        }
+
+        // Определяем тип игры
+        if (game.gameType === 'executable') {
+            // EXE игра
+            window.electronAPI.game.launch({
+                gameId: game._id,
+                title: game.title,
+                executablePath: game.executablePath || 'game.exe'
+            });
+        } else {
+            // HTML/Web игра
             window.electronAPI.game.launchWeb({
                 gameId: game._id,
                 title: game.title,
                 gameUrl: game.gameUrl,
                 gamePath: game.gamePath
             });
-        } else {
-            // Браузер - открываем в новой вкладке
-            const gameUrl = game.gameUrl || `${BASE_URL}/games${game.gamePath}/index.html`;
-            window.open(gameUrl, '_blank');
         }
     };
 
