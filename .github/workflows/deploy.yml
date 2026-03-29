@@ -1,0 +1,25 @@
+name: Deploy Server
+
+on:
+  push:
+    paths:
+      - 'server/**' # Запускать ТОЛЬКО если изменились файлы в папке server
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /opt/uteam/server
+            git pull origin main
+            npm install --production
+            pm2 restart uteam-server

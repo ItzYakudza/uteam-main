@@ -39,8 +39,15 @@ app.use(cors({
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// Увеличиваем лимиты для больших файлов (500MB)
+app.use(express.json({ limit: '200gb' }));
+app.use(express.urlencoded({ extended: true, limit: '200gb' }));
+
+app.use((req, res, next) => {
+    req.setTimeout(0);
+    next();
+});
 
 // Статические файлы (загруженные игры, аватары и т.д.)
 // Используем UPLOADS_DIR из переменной окружения или путь по умолчанию
