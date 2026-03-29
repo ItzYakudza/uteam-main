@@ -59,7 +59,7 @@ if errorlevel 1 (
 echo [92m✓ React build completed[0m
 
 echo.
-echo [93m--- Building Electron installer...[0m
+echo [93m--- Building Electron installer with NSIS...[0m
 call npm run build
 if errorlevel 1 (
     echo [91m✗ Electron build failed[0m
@@ -72,7 +72,12 @@ echo ============================================================
 echo [92m✓ BUILD SUCCESSFUL![0m
 echo ============================================================
 echo.
-echo Installer location: dist\UTEAM*.exe
-echo Update package: dist\UTEAM-*-full.nupkg
+echo Output location: dist\
+echo.
+dir dist\*.exe
+echo.
+echo Files created:
+echo - UTEAM Setup.exe (installer)
+echo - UTEAM-*-full.nupkg (update package)
 echo.
 pause

@@ -6,11 +6,15 @@
 "main": "build/electron.js",
   "scripts": {
 "react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-"build": "npm run react-build && electron-builder build --win --dir -p never"
+"build": "npm run react-build && electron-builder build --win -p never"
   },
 "build": {
   "appId": "com.uteam.app",
   "productName": "UTEAM",
+  "directories": {
+    "output": "dist",
+    "buildResources": "assets"
+  },
   "files": [
     "build/**/*",
     "node_modules/**/*",
@@ -20,8 +24,24 @@
       "to": "main.js"
     }
   ],
-  "directories": {
-    "output": "dist"
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "UTEAM"
+  },
+  "extraMetadata": {
+    "main": "main.js"
   }
 },
   "dependencies": {
