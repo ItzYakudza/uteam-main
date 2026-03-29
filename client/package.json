@@ -5,8 +5,8 @@
   "author": "UTEAM <support@uteam.com>",
 "main": "build/electron.js",
   "scripts": {
-    "react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-    "build": "npm run react-build && electron-builder build --win --dir -p never"
+"react-build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+"build": "npm run react-build && electron-builder build --win --dir -p never"
   },
 "build": {
   "appId": "com.uteam.app",

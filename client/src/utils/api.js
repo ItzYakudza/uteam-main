@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 // Базовый URL для API сервера
-const BASE_URL = 'http://72.56.236.196/api'; 
+export const BASE_URL = 'http://72.56.236.196:3001/api'; 
 
 const api = axios.create({
     baseURL: BASE_URL,
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
+    withCredentials: true
 });
 
 // Добавление токена
@@ -48,5 +49,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
-export { BASE_URL };
+export default api
