@@ -5,6 +5,7 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import { useUploadStore } from '../store/uploadStore';
 import { useTranslation } from '../utils/i18n';
 import api from '../utils/api';
 import './SubmitGame.css';
@@ -12,11 +13,13 @@ import './SubmitGame.css';
 function SubmitGame() {
     const navigate = useNavigate();
     const { user } = useAuthStore();
+    const { addUpload, updateProgress, completeUpload, errorUpload, removeUpload } = useUploadStore();
     const { t } = useTranslation();
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [error, setError] = useState('');
+    const [currentUploadId, setCurrentUploadId] = useState(null);
     
     const [formData, setFormData] = useState({
         title: '',
@@ -87,6 +90,10 @@ function SubmitGame() {
     const handleSubmit = async () => {
         if (!formData.gameArchive) { setError(t('submit.errorArchive')); return; }
         if (!formData.coverImage) { setError(t('submit.errorCover')); return; }
+        
+        // Генерируем уникальный ID загрузки
+        const uploadId = `upload_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        setCurrentUploadId(uploadId);
         setLoading(true);
         setError('');
         setUploadProgress(0);
@@ -106,16 +113,31 @@ function SubmitGame() {
             if (formData.gameIcon) data.append('gameIcon', formData.gameIcon);
             formData.screenshots.forEach(file => data.append('screenshots', file));
 
+            // Сохраняем загрузку в store (для отслеживания в фоне)
+            addUpload(uploadId, { title: formData.title, gameArchive: formData.gameArchive.name });
+
+            // Запускаем загрузку
             await api.post('/games/submit', data, {
                 headers: { 'Content-Type': 'multipart/form-data' },
-                onUploadProgress: (e) => setUploadProgress(Math.round((e.loaded * 100) / e.total))
+                onUploadProgress: (e) => {
+                    const progress = Math.round((e.loaded * 100) / e.total);
+                    setUploadProgress(progress);
+                    updateProgress(uploadId, progress); // Сохраняем в store
+                }
             });
 
+            completeUpload(uploadId);
             alert(t('submit.submitted'));
+            
+            // Удаляем из store через 5 секунд
+            setTimeout(() => removeUpload(uploadId), 5000);
+            
             navigate('/store');
         } catch (err) {
             console.error('Submit error:', err);
-            setError(err.response?.data?.error || 'Error submitting game');
+            const errorMsg = err.response?.data?.error || err.message || 'Error submitting game';
+            setError(errorMsg);
+            errorUpload(uploadId, new Error(errorMsg));
         } finally {
             setLoading(false);
             setUploadProgress(0);

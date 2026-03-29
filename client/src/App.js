@@ -5,6 +5,8 @@ import TitleBar from './components/TitleBar';
 import Header from './components/Header';
 import UpdateNotification from './components/UpdateNotification';
 import ConnectionStatus from './components/ConnectionStatus';
+import UploadTracker from './components/UploadTracker';
+import UploadNotifications from './components/UploadNotifications';
 
 import Login from './pages/Login';
 import Store from './pages/Store';
@@ -79,6 +81,8 @@ function App() {
                 <div className="app-container">
                     <div className="main-content">
                         <Header />
+                        {/* Upload Tracker for background uploads */}
+                        <UploadTracker />
                         <div className="page-content">
                             <Routes>
                                 <Route path="/" element={<Navigate to={`/${startupPage}`} replace />} />
@@ -96,6 +100,8 @@ function App() {
                 </div>
                 {/* Update Notification Panel */}
                 <UpdateNotification />
+                {/* Upload Notifications (Toasts) */}
+                <UploadNotifications />
             </div>
         </HashRouter>
     );
