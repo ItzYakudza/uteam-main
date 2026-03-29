@@ -631,24 +631,93 @@ ipcMain.on('game:launchWeb', (event, gameData) => {
 ipcMain.on('game:launch', (event, gameData) => {
     const { executablePath, title, gameId } = gameData;
     
-    if (!executablePath || !fs.existsSync(executablePath)) {
-        mainWindow?.webContents.send('game:error', { error: 'Game executable not found' });
+    console.log('[Game:Launch] Received request for game:', { gameId, title, executablePath });
+    
+    if (!executablePath) {
+        console.error('[Game:Launch] No executable path provided');
+        mainWindow?.webContents.send('game:error', { 
+            gameId, 
+            error: 'Game executable path not provided' 
+        });
+        return;
+    }
+    
+    if (!fs.existsSync(executablePath)) {
+        console.error('[Game:Launch] Executable not found at:', executablePath);
+        const fileStats = fs.existsSync(path.dirname(executablePath)) ? 
+            fs.statSync(path.dirname(executablePath)) : null;
+        console.error('[Game:Launch] Parent directory exists:', !!fileStats);
+        if (fileStats) {
+            console.error('[Game:Launch] Parent directory contents:', 
+                fs.readdirSync(path.dirname(executablePath)).slice(0, 10));
+        }
+        mainWindow?.webContents.send('game:error', { 
+            gameId, 
+            error: 'Game executable not found: ' + executablePath 
+        });
         return;
     }
 
-    const gameProcess = spawn(executablePath, [], {
-        detached: true,
-        stdio: 'ignore',
-        cwd: path.dirname(executablePath)
-    });
+    try {
+        console.log('[Game:Launch] Starting game:', title);
+        console.log('[Game:Launch] Executable:', executablePath);
+        console.log('[Game:Launch] Working directory:', path.dirname(executablePath));
 
-    gameProcess.unref();
-    mainWindow?.webContents.send('game:launched', { gameId, title });
-    
-    // Отслеживаем закрытие процесса (опционально)
-    gameProcess.on('close', () => {
-        mainWindow?.webContents.send('game:closed', { gameId, title });
-    });
+        const workDir = path.dirname(executablePath);
+        const logFile = path.join(workDir, `${gameId}_launch.log`);
+
+        // Запускаем процесс с INHERIT stdio для видимости консоли
+        const gameProcess = spawn(executablePath, [], {
+            detached: false,
+            stdio: ['ignore', 'pipe', 'pipe'],  // stdin: ignore, stdout/stderr: pipe
+            cwd: workDir,
+            windowsHide: false,
+            shell: true  // Нужно для Windows EXE
+        });
+
+        // Логируем stdout и stderr в файл и консоль
+        if (gameProcess.stdout) {
+            gameProcess.stdout.on('data', (data) => {
+                console.log('[Game:Stdout]', data.toString());
+            });
+        }
+
+        if (gameProcess.stderr) {
+            gameProcess.stderr.on('data', (data) => {
+                console.error('[Game:Stderr]', data.toString());
+            });
+        }
+        
+        console.log('[Game:Launch] Process spawned, PID:', gameProcess.pid);
+        mainWindow?.webContents.send('game:launched', { gameId, title, pid: gameProcess.pid });
+        
+        // Отслеживаем ошибки процесса
+        gameProcess.on('error', (err) => {
+            console.error('[Game:Launch] Spawn error:', err.message, err.code);
+            mainWindow?.webContents.send('game:error', { 
+                gameId, 
+                error: 'Failed to launch game: ' + err.message 
+            });
+        });
+        
+        // Отслеживаем закрытие процесса
+        gameProcess.on('close', (code, signal) => {
+            console.log('[Game:Launch] Process closed with code:', code, 'signal:', signal);
+            mainWindow?.webContents.send('game:closed', { gameId, title, code });
+        });
+
+        // Отслеживаем выход процесса
+        gameProcess.on('exit', (code, signal) => {
+            console.log('[Game:Launch] Process exited with code:', code, 'signal:', signal);
+        });
+        
+    } catch (error) {
+        console.error('[Game:Launch] Exception:', error.message, error.stack);
+        mainWindow?.webContents.send('game:error', { 
+            gameId, 
+            error: 'Failed to launch game: ' + error.message 
+        });
+    }
 });
 
 // Установка игры - скачивание ZIP и распаковка
