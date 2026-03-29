@@ -1,0 +1,380 @@
+/**
+ * Глобальные стили UTEAM
+ * Дизайн в стиле Steam
+ */
+
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Основные переменные */
+:root {
+    /* Цвета Steam */
+    --bg-primary: #1b2838;
+    --bg-secondary: #2a475e;
+    --bg-tertiary: #171a21;
+    --bg-hover: #3d6c8e;
+    
+    --text-primary: #c7d5e0;
+    --text-secondary: #8f98a0;
+    --text-muted: #5c6c75;
+    
+    --accent-blue: #66c0f4;
+    --accent-blue-hover: #1a9fff;
+    --accent-green: #5c7e10;
+    --accent-green-light: #a4d007;
+    
+    --button-gradient-start: #75b022;
+    --button-gradient-end: #588a1b;
+    
+    --border-color: #4a5562;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    
+    /* Размеры */
+    --sidebar-width: 240px;
+    --header-height: 50px;
+    --titlebar-height: 32px;
+    
+    /* Переходы */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+}
+
+/* Тело документа */
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    user-select: none;
+}
+
+/* Приложение */
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.page-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bg-hover);
+}
+
+/* Экран загрузки */
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+}
+
+.loading-logo {
+    font-size: 56px;
+    font-weight: bold;
+    color: var(--accent-blue);
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(102, 192, 244, 0.5);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--bg-secondary);
+    border-top-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    margin-top: 20px;
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Кнопки */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--button-gradient-start) 0%, var(--button-gradient-end) 100%);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #8bc434 0%, var(--button-gradient-start) 100%);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, #1e3a4c 100%);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-secondary) 100%);
+}
+
+.btn-blue {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #4a9eda 100%);
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background: linear-gradient(135deg, var(--accent-blue-hover) 0%, var(--accent-blue) 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #c03030 0%, #8b2020 100%);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #e04040 0%, #c03030 100%);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Инпуты */
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Карточки */
+.card {
+    background: linear-gradient(135deg, rgba(42, 71, 94, 0.8) 0%, rgba(27, 40, 56, 0.9) 100%);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+/* Бейджи */
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-free {
+    background: var(--accent-green);
+    color: #fff;
+}
+
+.badge-discount {
+    background: var(--accent-green-light);
+    color: #1a1a1a;
+}
+
+.badge-new {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+/* Цены */
+.price {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.price-free {
+    color: var(--accent-green-light);
+    font-weight: 600;
+}
+
+.price-original {
+    text-decoration: line-through;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.price-discount {
+    color: var(--accent-green-light);
+    font-weight: 600;
+}
+
+/* Статусы */
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-online .status-dot {
+    background: #57cbde;
+    box-shadow: 0 0 6px #57cbde;
+}
+
+.status-offline .status-dot {
+    background: var(--text-muted);
+}
+
+.status-playing .status-dot {
+    background: var(--accent-green-light);
+    box-shadow: 0 0 6px var(--accent-green-light);
+}
+
+/* Разделители */
+.divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 16px 0;
+}
+
+/* Типографика */
+h1 {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-blue-hover);
+}
+
+/* Утилиты */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }

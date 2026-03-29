@@ -1,0 +1,116 @@
+UTEAM END USER LICENSE AGREEMENT
+
+Last Updated: January 2026
+
+PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THE UTEAM SOFTWARE.
+
+1. ACCEPTANCE OF TERMS
+
+By downloading, installing, copying, or otherwise using this software, you agree 
+to be bound by the terms of this License Agreement. If you do not agree to the 
+terms of this Agreement, do not install or use the Software.
+
+2. LICENSE GRANT
+
+Subject to the terms of this Agreement, UTEAM Team grants you a limited, 
+non-exclusive, non-transferable license to:
+
+   a) Install and use the Software on your personal computer(s)
+   b) Download and play games through the UTEAM platform
+   c) Use online features including multiplayer, chat, and community features
+
+3. RESTRICTIONS
+
+You may NOT:
+
+   a) Copy, modify, or distribute the Software
+   b) Reverse engineer, decompile, or disassemble the Software
+   c) Sell, rent, lease, or sublicense the Software
+   d) Remove or alter any proprietary notices or labels
+   e) Use the Software for any illegal purpose
+   f) Share your account credentials with others
+   g) Use automated systems or bots with the Software
+
+4. INTELLECTUAL PROPERTY
+
+The Software and all associated content, including but not limited to graphics, 
+user interface, audio, video, and text, are owned by UTEAM Team and protected 
+by copyright laws and international treaty provisions.
+
+5. ONLINE SERVICES
+
+Some features require an internet connection and a valid UTEAM account. 
+Online services may be modified, suspended, or discontinued at any time.
+
+6. ACCOUNT OWNERSHIP AND LICENSING
+
+   a) ALL USER ACCOUNTS CREATED ON THE UTEAM PLATFORM ARE THE EXCLUSIVE 
+      PROPERTY OF UTEAM TEAM. Users do not own their accounts.
+   
+   b) By creating an account, you are granted a LIMITED, REVOCABLE, 
+      NON-TRANSFERABLE LICENSE to use the account for personal, 
+      non-commercial purposes only.
+   
+   c) Your account is essentially "rented" to you by UTEAM Team. This license
+      may be revoked at any time if you violate this Agreement or the 
+      UTEAM Terms of Service.
+   
+   d) UTEAM Team reserves the right to:
+      - Suspend or terminate any account at its sole discretion
+      - Modify, reset, or delete account data
+      - Restrict access to account features
+      - Transfer account ownership in case of company acquisition
+   
+   e) You acknowledge that your account, including all digital content, 
+      virtual items, progress, and associated data, belongs to UTEAM Team
+      and is licensed, not sold, to you.
+   
+   f) Upon termination of your account license, you lose all rights to 
+      access the account and any associated content without compensation.
+
+7. PRIVACY
+
+Your use of the Software is subject to our Privacy Policy, which describes 
+how we collect, use, and share your information.
+
+8. DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+9. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL UTEAM TEAM BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, 
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH 
+THIS AGREEMENT OR THE USE OF THE SOFTWARE.
+
+10. UPDATES
+
+The Software may automatically download and install updates. These updates 
+are designed to improve and enhance the Software and may be required for 
+continued use of certain features.
+
+11. TERMINATION
+
+This Agreement is effective until terminated. Your rights under this Agreement 
+will terminate automatically without notice if you fail to comply with any 
+term of this Agreement.
+
+12. GOVERNING LAW
+
+This Agreement shall be governed by and construed in accordance with the 
+laws of the jurisdiction in which UTEAM Team is established.
+
+13. CONTACT INFORMATION
+
+For questions about this Agreement, please contact:
+   Email: support@uteam.app
+   Website: https://uteam.app/support
+
+================================================================================
+
+Copyright (c) 2026 UTEAM Team. All Rights Reserved.
+
+UTEAM and the UTEAM logo are trademarks of UTEAM Team.
+All other trademarks are the property of their respective owners.

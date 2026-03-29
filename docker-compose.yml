@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # MongoDB база данных
+  mongodb:
+    image: mongo:7
+    container_name: uteam-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: uteam
+      MONGO_INITDB_ROOT_PASSWORD: uteam_password
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - uteam-network
+
+  # Backend API сервер
+  server:
+    build: ./server
+    container_name: uteam-server
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      MONGODB_URI: mongodb://uteam:uteam_password@mongodb:27017/uteam?authSource=admin
+      JWT_SECRET: your_super_secret_jwt_key_change_in_production
+    volumes:
+      - uploads:/app/uploads
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+    networks:
+      - uteam-network
+
+  # Developer Portal
+  developer-portal:
+    build: ./developer-portal
+    container_name: uteam-portal
+    restart: unless-stopped
+    ports:
+      - "3002:80"
+    depends_on:
+      - server
+    networks:
+      - uteam-network
+
+volumes:
+  mongodb_data:
+  uploads:
+
+networks:
+  uteam-network:
+    driver: bridge

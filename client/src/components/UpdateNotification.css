@@ -1,0 +1,268 @@
+/**
+ * Update Notification Styles
+ */
+
+.update-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #1b2838 0%, #2a475e 100%);
+    border: 1px solid rgba(102, 192, 244, 0.4);
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 340px;
+    max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    animation: slideInUp 0.3s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.update-notification-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.update-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #66c0f4, #4fc3f7);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.update-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #1b2838;
+}
+
+.update-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.update-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.version-badge {
+    background: linear-gradient(90deg, #66c0f4, #4fc3f7);
+    color: #1b2838;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.update-info {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.update-size {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.update-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-dismiss {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-dismiss:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-dismiss svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-update,
+.btn-restart {
+    padding: 8px 16px;
+    border: none;
+    background: linear-gradient(90deg, #66c0f4, #4fc3f7);
+    color: #1b2838;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-update:hover,
+.btn-restart:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 192, 244, 0.4);
+}
+
+.btn-restart {
+    background: linear-gradient(90deg, #4caf50, #66bb6a);
+}
+
+/* Download Progress */
+.download-progress {
+    margin-top: 8px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #66c0f4, #4fc3f7);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.update-ready {
+    font-size: 12px;
+    color: #4caf50;
+    font-weight: 500;
+}
+
+/* Downloading Indicator */
+.downloading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(102, 192, 244, 0.3);
+    border-top-color: #66c0f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Release Notes Expand */
+.update-expand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.update-expand:hover {
+    color: #66c0f4;
+}
+
+.update-expand svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.update-expand svg.rotated {
+    transform: rotate(180deg);
+}
+
+/* Release Notes */
+.release-notes {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.release-notes pre {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+.release-notes::-webkit-scrollbar {
+    width: 6px;
+}
+
+.release-notes::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.release-notes::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.release-notes::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Expanded State */
+.update-notification.expanded {
+    max-width: 480px;
+}

@@ -1,0 +1,127 @@
+/**
+ * LoadingScreen - Стили экрана загрузки
+ */
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 32px);
+    background: linear-gradient(135deg, #0a1628 0%, #1b2838 50%, #0d1926 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(102, 192, 244, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(164, 208, 7, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.loading-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.logo-text {
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 12px;
+    background: linear-gradient(135deg, #66c0f4 0%, #a4d007 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 60px rgba(102, 192, 244, 0.5);
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+.logo-subtitle {
+    font-size: 14px;
+    letter-spacing: 8px;
+    color: #8f98a0;
+    margin-top: 8px;
+}
+
+@keyframes logoGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+.loading-progress-container {
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+.loading-progress-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #66c0f4 0%, #a4d007 100%);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 20px rgba(102, 192, 244, 0.5);
+}
+
+.loading-progress-text {
+    text-align: right;
+    font-size: 12px;
+    color: #66c0f4;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.loading-status {
+    font-size: 14px;
+    color: #c7d5e0;
+    margin-bottom: 40px;
+    min-height: 20px;
+}
+
+.loading-spinner {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.spinner-ring {
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(102, 192, 244, 0.2);
+    border-top-color: #66c0f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-footer {
+    position: absolute;
+    bottom: 30px;
+    color: #4a5568;
+    font-size: 12px;
+}

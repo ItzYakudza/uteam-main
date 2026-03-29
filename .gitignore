@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+client/dist/
+client/build/
+developer-portal/dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (keep structure, ignore contents)
+server/uploads/avatars/*
+server/uploads/games/*
+server/uploads/screenshots/*
+!server/uploads/avatars/.gitkeep
+!server/uploads/games/.gitkeep
+!server/uploads/screenshots/.gitkeep
+
+# Electron
+client/*.exe
+client/*.dmg
+client/*.AppImage
+client/installer/app/
+
+# Temp
+*.tmp
+*.temp

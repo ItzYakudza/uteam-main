@@ -1,0 +1,4 @@
+﻿Connected to MongoDB
+
+=== GAMES IN DATABASE ===
+

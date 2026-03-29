@@ -1,0 +1,171 @@
+/**
+ * Стили для Header
+ */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    padding: 0 20px;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Навигация */
+.header-nav {
+    display: flex;
+    gap: 4px;
+}
+
+.header-nav-item {
+    padding: 8px 16px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+}
+
+.header-nav-item:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.header-nav-item.active {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.header-nav-submit {
+    color: #a4d007 !important;
+    border: 1px solid rgba(164, 208, 7, 0.3);
+    margin-left: 8px;
+}
+
+.header-nav-submit:hover {
+    background: rgba(164, 208, 7, 0.15) !important;
+    border-color: #a4d007;
+}
+
+.header-nav-moderation {
+    color: #4fc3f7 !important;
+    border: 1px solid rgba(79, 195, 247, 0.3);
+}
+
+.header-nav-moderation:hover {
+    background: rgba(79, 195, 247, 0.15) !important;
+    border-color: #4fc3f7;
+}
+
+/* Правая часть */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    text-decoration: none;
+}
+
+.header-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Профиль */
+.header-profile {
+    position: relative;
+    margin-left: 8px;
+}
+
+.header-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 12px 4px 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background var(--transition-fast);
+}
+
+.header-profile-link:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.header-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    object-fit: cover;
+    background: var(--bg-secondary);
+}
+
+.header-username {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+/* Выпадающее меню */
+.header-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    min-width: 160px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-fast);
+    z-index: 100;
+}
+
+.header-profile:hover .header-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.header-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.header-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.header-dropdown-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 4px 0;
+}

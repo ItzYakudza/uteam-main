@@ -1,0 +1,566 @@
+/**
+ * Profile.css - Стили страницы профиля
+ */
+
+.profile {
+    min-height: 100%;
+}
+
+.profile-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.profile-error {
+    text-align: center;
+    padding: 80px 20px;
+    color: #67c1f5;
+    font-size: 24px;
+}
+
+/* Шапка профиля */
+.profile-header {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.profile-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+}
+
+.profile-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(27, 40, 56, 0.5) 0%,
+        rgba(27, 40, 56, 0.95) 100%
+    );
+}
+
+.profile-header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    height: 100%;
+    padding: 24px 40px;
+}
+
+.profile-avatar {
+    width: 164px;
+    height: 164px;
+    border-radius: 4px;
+    border: 4px solid #66c0f4;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-info {
+    padding-bottom: 8px;
+}
+
+.profile-username {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #66c0f4;
+    font-size: 14px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #898989;
+}
+
+.status-dot.online {
+    background-color: #5c7e10;
+}
+
+.status-dot.in-game {
+    background-color: #90ba3c;
+}
+
+/* UTEAM ID */
+.uteam-id-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.uteam-id-label {
+    color: #8f98a0;
+    font-size: 12px;
+}
+
+.uteam-id-value {
+    color: #66c0f4;
+    font-size: 14px;
+    font-family: 'Consolas', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.uteam-id-value.clickable {
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.uteam-id-value.clickable:hover {
+    background: rgba(102, 192, 244, 0.2);
+    color: #fff;
+}
+
+/* Контент профиля */
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    padding: 24px 40px;
+}
+
+/* Левая колонка */
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Карточка уровня */
+.profile-level-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, #2a475e 0%, #1b2838 100%);
+    border-radius: 4px;
+    padding: 20px 24px;
+    border: 1px solid rgba(102, 192, 244, 0.2);
+}
+
+.level-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #66c0f4 0%, #417a9b 100%);
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.level-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.level-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 4px;
+}
+
+.level-progress {
+    flex: 1;
+}
+
+.level-bar {
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.level-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5c7e10 0%, #8bc43f 100%);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.level-xp {
+    font-size: 12px;
+    color: #8f98a0;
+    text-align: right;
+}
+
+/* Секции профиля */
+.profile-section {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.profile-section h3 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #c7d5e0;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-section p {
+    color: #acb2b8;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Витрина игр */
+.featured-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.featured-game-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.featured-game-card img {
+    width: 100%;
+    aspect-ratio: 460/215;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.featured-game-card span {
+    font-size: 13px;
+    color: #c7d5e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Правая колонка - сайдбар */
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.profile-stats,
+.profile-info-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.profile-stats h3,
+.profile-info-card h3 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #8f98a0;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.stat-label {
+    color: #8f98a0;
+}
+
+.stat-value {
+    color: #c7d5e0;
+    font-weight: 500;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span:first-child {
+    color: #8f98a0;
+}
+
+.info-row span:last-child {
+    color: #c7d5e0;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-header-content {
+        padding: 20px;
+    }
+    
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-username {
+        font-size: 24px;
+    }
+}
+
+/* Редактирование профиля */
+.profile-avatar-container {
+    position: relative;
+}
+
+.profile-avatar-container.editable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.profile-avatar-container.editable:hover .profile-avatar {
+    border-color: #66c0f4;
+    box-shadow: 0 0 0 3px rgba(102, 192, 244, 0.3);
+    filter: brightness(0.7);
+}
+
+.avatar-uploading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 18px;
+    z-index: 3;
+}
+
+.edit-profile-btn {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: rgba(102, 192, 244, 0.2);
+    border: 1px solid #66c0f4;
+    border-radius: 4px;
+    color: #66c0f4;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.edit-profile-btn:hover {
+    background: rgba(102, 192, 244, 0.3);
+}
+
+.profile-edit-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-edit-section h3 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.profile-edit-section .form-group {
+    margin-bottom: 16px;
+}
+
+.profile-edit-section .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8f98a0;
+    font-size: 13px;
+}
+
+.profile-edit-section .form-group input,
+.profile-edit-section .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #c7d5e0;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.profile-edit-section .form-group input:focus,
+.profile-edit-section .form-group textarea:focus {
+    outline: none;
+    border-color: #66c0f4;
+}
+
+.profile-edit-section textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.edit-actions .btn {
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.edit-actions .btn-primary {
+    background: linear-gradient(135deg, #75b022 0%, #588a1b 100%);
+    color: #fff;
+}
+
+.edit-actions .btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.edit-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #c7d5e0;
+}
+
+.edit-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Кнопка изменения фона */
+.change-bg-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.change-bg-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #66c0f4;
+}
+
+.change-bg-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* URL input */
+.url-input {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.url-prefix {
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #8f98a0;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.url-input input {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+/* Счетчик символов */
+.char-count {
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    color: #8f98a0;
+    margin-top: 4px;
+}
+
+/* Улучшенная кнопка редактирования аватара */
+.avatar-edit-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 6px 12px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #fff;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.avatar-edit-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: #66c0f4;
+    transform: none;
+}

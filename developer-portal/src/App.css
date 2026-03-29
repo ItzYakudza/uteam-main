@@ -1,0 +1,152 @@
+/**
+ * App.css - Стили приложения
+ */
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #666;
+    font-size: 12px;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter 0.2s;
+}
+
+.btn:hover {
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #75b022 0%, #588a1b 100%);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #c7d5e0;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #c23b3b 0%, #8b2929 100%);
+    color: #ffffff;
+}
+
+/* Карточки */
+.card {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 24px;
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8f98a0;
+    font-size: 13px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #c7d5e0;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #66c0f4;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Сообщения */
+.message {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.message.success {
+    background-color: rgba(92, 126, 16, 0.2);
+    border: 1px solid #5c7e10;
+    color: #a4d007;
+}
+
+.message.error {
+    background-color: rgba(205, 54, 54, 0.2);
+    border: 1px solid #cd3636;
+    color: #ff6b6b;
+}
+
+/* Загрузка */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(102, 192, 244, 0.3);
+    border-top-color: #66c0f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
